@@ -6,7 +6,7 @@ import "./ExampleExternalContract.sol"; //https://github.com/OpenZeppelin/openze
 contract Staker {
     ExampleExternalContract public exampleExternalContract;
 
-    event Stake(address _address, uint256 quantity);
+    event Stake(address staker, uint256 quantity);
 
     mapping(address => uint256) public balances;
     uint256 public constant threshold = 1 ether;
