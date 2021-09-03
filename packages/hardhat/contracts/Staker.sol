@@ -30,11 +30,12 @@ contract Staker {
     // After some `deadline` allow anyone to call an `execute()` function
     //  It should either call `exampleExternalContract.complete{value: address(this).balance}()` to send all the value
     function execute() public payable {
-        bool isDeadlineReached = timeLeft() == 0;
-        if (!isDeadlineReached && address(this).balance > threshold) {
-            exampleExternalContract.complete{value: address(this).balance}();
+        require(timeLeft() == 0, "Can't execute this method before deadline");
+        if (address(this).balance > threshold) {
+            // Goal acomplished
+            exampleExternalContract.complete{value: address(this).balance}(); // Do the work
         } else {
-            openForWithdraw = true;
+            openForWithdraw = true; // Withdraw funds
         }
     }
 

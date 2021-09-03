@@ -89,9 +89,9 @@ If the balance is less than the `threshold`, you want to set a `openForWithdraw`
 
 #### 🥅 Goals
 
-- [ ] Can you see `timeLeft` counting down in the `Staker UI` tab when you trigger a transaction with the faucet?
-- [ ] If you `stake()` enough ETH before the `deadline`, does it call `complete()`?
-- [ ] If you don't `stake()` enough can you `withdraw(address payable)` your funds?
+- [x] Can you see `timeLeft` counting down in the `Staker UI` tab when you trigger a transaction with the faucet?
+- [x] If you `stake()` enough ETH before the `deadline`, does it call `complete()`?
+- [x] If you don't `stake()` enough can you `withdraw(address payable)` your funds?
 
 ⚔️ Side Quests
 
