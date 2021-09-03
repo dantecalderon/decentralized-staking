@@ -22,15 +22,28 @@ contract Staker {
     // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
     //  ( make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
 
-    function stake() public payable {
+    function stake() public payable isDeadlineReached(false) {
         balances[msg.sender] += msg.value;
         emit Stake(msg.sender, msg.value);
     }
 
+    modifier isDeadlineReached(bool _after) {
+        if (_after) {
+            // Check if time is done
+            require(
+                timeLeft() == 0,
+                "Can't execute this method before deadline"
+            );
+        } else {
+            // Check if deadline has not been reached
+            require(timeLeft() > 0, "Can't execute this method after deadline");
+        }
+        _;
+    }
+
     // After some `deadline` allow anyone to call an `execute()` function
     //  It should either call `exampleExternalContract.complete{value: address(this).balance}()` to send all the value
-    function execute() public payable {
-        require(timeLeft() == 0, "Can't execute this method before deadline");
+    function execute() public payable isDeadlineReached(true) {
         if (address(this).balance > threshold) {
             // Goal acomplished
             exampleExternalContract.complete{value: address(this).balance}(); // Do the work
@@ -41,7 +54,11 @@ contract Staker {
 
     // if the `threshold` was not met, allow everyone to call a `withdraw()` function
 
-    function withdraw(address payable _to) public payable {
+    function withdraw(address payable _to)
+        public
+        payable
+        isDeadlineReached(true)
+    {
         require(openForWithdraw, "Contract is not open for withdraw");
         if (openForWithdraw) {
             // Withdraw all balance

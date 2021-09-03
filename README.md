@@ -97,11 +97,19 @@ If the balance is less than the `threshold`, you want to set a `openForWithdraw`
 
 - [x] Can execute get called more than once, and is that okay?
 
-      Yes it can be execute more than once, it's not okay but it doesn't not affect in nothing. **Anyway it opens the withdraw after the first call**.
+  Yes it can be execute more than once, it's not okay but it doesn't not affect in nothing. **Anyway it opens the withdraw after the first call**.
 
-- [ ] Can you deposit and withdraw freely after the `deadline`, and is that okay?
-- [ ] What are other implications of _anyone_ being able to withdraw for someone?
-- [ ] Can you implement your own [modifier](https://solidity-by-example.org/function-modifier/) that checks whether `deadline` was passed or not? Where can you use it?
+- [x] Can you deposit and withdraw freely after the `deadline`, and is that okay?
+
+  Yes, it's not okay because the deadline for staking has done. It don't have any benefit.
+
+- [x] What are other implications of _anyone_ being able to withdraw for someone?
+
+  If a person withdraw all the balance, the other stake holders would lose their funds, which would be considered a scam.
+
+- [x] Can you implement your own [modifier](https://solidity-by-example.org/function-modifier/) that checks whether `deadline` was passed or not? Where can you use it?
+
+  Of course, I can. In addition to `execute` method, the modifier can also be used in `stake` and `withdraw` methods, preventing to execute that methods after and before deadline respectively.
 
 🐸 It's a trap!
 
