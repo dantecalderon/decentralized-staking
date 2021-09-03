@@ -95,7 +95,10 @@ If the balance is less than the `threshold`, you want to set a `openForWithdraw`
 
 ⚔️ Side Quests
 
-- [ ] Can execute get called more than once, and is that okay?
+- [x] Can execute get called more than once, and is that okay?
+
+      Yes it can be execute more than once, it's not okay but it doesn't not affect in nothing. **Anyway it opens the withdraw after the first call**.
+
 - [ ] Can you deposit and withdraw freely after the `deadline`, and is that okay?
 - [ ] What are other implications of _anyone_ being able to withdraw for someone?
 - [ ] Can you implement your own [modifier](https://solidity-by-example.org/function-modifier/) that checks whether `deadline` was passed or not? Where can you use it?
