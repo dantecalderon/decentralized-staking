@@ -41,9 +41,14 @@ contract Staker {
         _;
     }
 
+    modifier notCompleted() {
+        require(!exampleExternalContract.completed(), "Error");
+        _;
+    }
+
     // After some `deadline` allow anyone to call an `execute()` function
     //  It should either call `exampleExternalContract.complete{value: address(this).balance}()` to send all the value
-    function execute() public payable isDeadlineReached(true) {
+    function execute() public payable isDeadlineReached(true) notCompleted {
         if (address(this).balance > threshold) {
             // Goal acomplished
             exampleExternalContract.complete{value: address(this).balance}(); // Do the work
@@ -58,6 +63,7 @@ contract Staker {
         public
         payable
         isDeadlineReached(true)
+        notCompleted
     {
         require(openForWithdraw, "Contract is not open for withdraw");
         if (openForWithdraw) {

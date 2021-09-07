@@ -113,8 +113,8 @@ If the balance is less than the `threshold`, you want to set a `openForWithdraw`
 
 🐸 It's a trap!
 
-- [ ] Make sure funds can't get trapped in the contract! Try sending funds after you have executed!
-- [ ] Try to create a [modifier](https://solidity-by-example.org/function-modifier/) called `notCompleted`. It will check that `ExampleExternalContract` is not completed yet. Use it to protect your `execute` and `withdraw` functions.
+- [x] Make sure funds can't get trapped in the contract! Try sending funds after you have executed!
+- [x] Try to create a [modifier](https://solidity-by-example.org/function-modifier/) called `notCompleted`. It will check that `ExampleExternalContract` is not completed yet. Use it to protect your `execute` and `withdraw` functions.
 
 ---
 
