@@ -42,7 +42,7 @@ contract Staker {
     }
 
     modifier notCompleted() {
-        require(!exampleExternalContract.completed(), "Error");
+        require(!exampleExternalContract.completed(), "Completed");
         _;
     }
 
