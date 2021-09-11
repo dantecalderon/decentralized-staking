@@ -66,13 +66,11 @@ contract Staker {
         notCompleted
     {
         require(openForWithdraw, "Contract is not open for withdraw");
-        if (openForWithdraw) {
-            // Withdraw all balance
-            uint256 amount = address(this).balance;
+        // Withdraw all balance
+        uint256 amount = address(this).balance;
 
-            (bool success, ) = _to.call{value: amount}("");
-            require(success, "Failed to send Ether");
-        }
+        (bool success, ) = _to.call{value: amount}("");
+        require(success, "Failed to send Ether");
     }
 
     // Add a `timeLeft()` view function that returns the time left before the deadline for the frontend
